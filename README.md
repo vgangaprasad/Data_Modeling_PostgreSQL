@@ -27,14 +27,22 @@ So, time to use data engineer skills to create a Postgres database with tables d
     
 Table Schema;
     
-songplay_id SERIAL PRIMARY KEY,
-start_time TIME,
-user_id INTEGER, 
+songplay_id SERIAL PRIMARY KEY
+
+start_time TIME
+
+user_id INTEGER
+
 level TEXT
-song_id TEXT,
-artist_id TEXT, 
-session_id INTEGER, 
-location TEXT, 
+
+song_id TEXT
+
+artist_id TEXT
+
+session_id INTEGER
+
+location TEXT
+
 user_agent TEXT
 
 
