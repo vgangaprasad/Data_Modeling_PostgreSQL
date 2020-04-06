@@ -25,38 +25,30 @@ So, time to use data engineer skills to create a Postgres database with tables d
     
 2. Table is created by combining the log_data and song_data JSON logs (artist_id and song_id columns are from the songs and artists tables which is created using song_data)
     
-Table Schema;
+**Table schema**
     
-songplay_id SERIAL PRIMARY KEY
-
-start_time TIME
-
-user_id INTEGER
-
-level TEXT
-
-song_id TEXT
-
-artist_id TEXT
-
-session_id INTEGER
-
-location TEXT
-
-user_agent TEXT
+songplay_id SERIAL PRIMARY KEY   
+start_time TIME    
+user_id INTEGER   
+level TEXT  
+song_id TEXT  
+artist_id TEXT   
+session_id INTEGER   
+location TEXT   
+user_agent TEXT   
 
 
 ### Dimension Table: users
 
 * Created with data from the log_data JSON files
 
-Table schema;
+**Table schema**
     
-user_id INTEGER PRIMARY KEY,
-first_name TEXT,
-last_name TEXT,
-gender TEXT,
-level TEXT
+user_id INTEGER PRIMARY KEY    
+first_name TEXT    
+last_name TEXT    
+gender TEXT    
+level TEXT     
 
 
 
@@ -64,27 +56,27 @@ level TEXT
 
 * Created with data from the song_data JSON files
     
-Table schema;
+**Table schema**
     
-song_id TEXT PRIMARY KEY,
-title TEXT, 
-artist_id TEXT,
-year INTEGER,
-duration FLOAT
+song_id TEXT PRIMARY KEY    
+title TEXT    
+artist_id TEXT    
+year INTEGER     
+duration FLOAT     
     
 
 ### Dimension Table: Artists
 
 * Created with data from the song_data JSON files
     
-Table schema;
+**Table schema**
     
     
-artist_id TEXT PRIMARY KEY,
-name TEXT,
-location TEXT,
-latitude FLOAT,
-longitude FLOAT
+artist_id TEXT PRIMARY KEY     
+name TEXT     
+location TEXT    
+latitude FLOAT    
+longitude FLOAT     
     
 
 
@@ -94,12 +86,12 @@ longitude FLOAT
     
 2. The table features the timestamp of each song play broken down into individual units of time in columns
     
-Table schema;
+**Table schema**
     
-time TIMESTAMP,
-hour INT,
-day INT,
-week INT,
-month INT,
-year INT,
-weekday INT
+time TIMESTAMP    
+hour INT     
+day INT     
+week INT     
+month INT     
+year INT     
+weekday INT     
