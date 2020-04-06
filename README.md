@@ -24,7 +24,7 @@ So, time to use data engineer skills to create a Postgres database with tables d
 1. Comprised of event data from the log_data JSON files, where the 'page' is equal to 'NextSong' - indicating that the user is playing songs via the app - other values for 'page' are excluded from the table
     
 2. Table is created by combining the log_data and song_data JSON logs (artist_id and song_id columns are from the songs and artists tables which is created using song_data)
-    
+
 **Table schema**
     
 songplay_id SERIAL PRIMARY KEY   
@@ -37,6 +37,7 @@ session_id INTEGER
 location TEXT   
 user_agent TEXT   
 
+![songplays table](images/songplays.png)
 
 ### Dimension Table: users
 
@@ -49,6 +50,8 @@ first_name TEXT
 last_name TEXT    
 gender TEXT    
 level TEXT     
+
+![songplays table](images/users.png)
 
 
 
@@ -64,6 +67,8 @@ artist_id TEXT
 year INTEGER     
 duration FLOAT     
     
+![songplays table](images/songs.png)
+
 
 ### Dimension Table: Artists
 
@@ -78,6 +83,8 @@ location TEXT
 latitude FLOAT    
 longitude FLOAT     
     
+![songplays table](images/artists.png)
+
 
 
 ### Dimension Table: time
@@ -95,3 +102,5 @@ week INT
 month INT     
 year INT     
 weekday INT     
+
+![songplays table](images/time.png)

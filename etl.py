@@ -10,12 +10,12 @@ def process_song_file(cur, filepath):
     df = pd.read_json(filepath, lines = True)
 
     # insert song record
-    song_cols = [7,8,0,9,5] #Columns we need for songs table
+    song_cols = [7,8,0,9,5]
     song_data =  df[df.columns[song_cols]].values[0].tolist()
     cur.execute(song_table_insert, song_data)
     
     # insert artist record
-    artist_cols = [0,4,2,1,3] #Columns we need for artist table
+    artist_cols = [0,4,2,1,3]
     artist_data = artist_data = df[df.columns[artist_cols]].values[0].tolist()
     cur.execute(artist_table_insert, artist_data)
 
