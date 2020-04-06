@@ -6,6 +6,21 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    """
+    Summary line
+    ------------
+    Process song files one by one and inserts the data to song and artists table.
+    
+    Parameters
+    ----------
+    cur -- Database Cursor
+    filepath -- JSON file path which has the songs data
+    
+    Returns
+    -------
+    None
+    
+    """
     # open song file
     df = pd.read_json(filepath, lines = True)
 
@@ -20,6 +35,22 @@ def process_song_file(cur, filepath):
     cur.execute(artist_table_insert, artist_data)
 
 def process_log_file(cur, filepath):
+    """
+    Summary line
+    ------------
+    Process log files one by one and inserts the data to time, users, and songsplay table
+    based on values from songs and artists table.
+    
+    Parameters
+    ----------
+    cur -- Database Cursor
+    filepath -- JSON file path which has the user log data
+    
+    Returns
+    -------
+    None
+    
+    """
     # open log file
     df = pd.read_json(filepath, lines = True)
 
@@ -70,6 +101,26 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """
+    Summary line
+    ------------
+    Called by main function to get the filepath of the all song and log files and calls
+    process_log_file and process_song_file to process and add rows to the songs, artits, users, 
+    time, and songsplay tables
+    
+    Parameters
+    ----------
+    cur -- Database Cursor
+    conn -- Database connection details
+    filepath -- JSON file path which has the songs and log data
+    func -- function name that will be called to process the file path
+    
+    Returns
+    -------
+    None
+    
+    """
+
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -89,6 +140,22 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """
+    Summary line
+    ------------
+    Main function which calls the process_data function to get the file path and call the other functions to process
+    and insert data to the songs, artists, users, time, and songsplay tables
+    
+    Parameters
+    ----------
+    None
+    
+    Returns
+    -------
+    None
+
+    """
+
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 

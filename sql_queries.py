@@ -11,8 +11,8 @@ time_table_drop = "DROP TABLE IF EXISTS time"
 songplay_table_create = ("""CREATE TABLE IF NOT EXISTS 
 songplays (
 songplay_id SERIAL PRIMARY KEY,
-start_time TIME,
-user_id INTEGER,
+start_time TIMESTAMP NOT NULL,
+user_id INTEGER NOT NULL,
 level TEXT,
 song_id TEXT,
 artist_id TEXT,
@@ -34,8 +34,8 @@ level TEXT
 song_table_create = ("""CREATE TABLE IF NOT EXISTS
 songs(
 song_id TEXT PRIMARY KEY,
-title TEXT, 
-artist_id TEXT,
+title TEXT NOT NULL,
+artist_id TEXT NOT NULL,
 year INTEGER,
 duration FLOAT
 )
@@ -44,7 +44,7 @@ duration FLOAT
 artist_table_create = ("""CREATE TABLE IF NOT EXISTS
 artists(
 artist_id TEXT PRIMARY KEY,
-name TEXT,
+name TEXT NOT NULL,
 location TEXT,
 latitude FLOAT,
 longitude FLOAT
@@ -53,7 +53,7 @@ longitude FLOAT
 
 time_table_create = ("""CREATE TABLE IF NOT EXISTS
 time(
-time TIMESTAMP,
+start_time TIMESTAMP PRIMARY KEY,
 hour INT,
 day INT,
 week INT,
@@ -71,7 +71,7 @@ songplay_table_insert = ("""INSERT INTO songplays
 
 user_table_insert = ("""INSERT INTO users
 (user_id, first_name, last_name, gender, level) VALUES (%s,%s,%s,%s,%s)
-ON CONFLICT (user_id) DO NOTHING
+ON CONFLICT (user_id) DO UPDATE SET level=EXCLUDED.level
 """)
 
 song_table_insert = ("""INSERT INTO songs
@@ -86,8 +86,9 @@ ON CONFLICT (artist_id) DO NOTHING
 
 
 time_table_insert = ("""INSERT INTO time
-(time, hour, day, week, month, year, weekday) 
+(start_time, hour, day, week, month, year, weekday) 
 VALUES(%s,%s,%s,%s,%s,%s,%s)
+ON CONFLICT (start_time) DO NOTHING
 """)
 
 # FIND SONGS
